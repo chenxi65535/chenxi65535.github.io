@@ -55,28 +55,33 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Notebook">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="由于近期项目中需要编写一个认证来源的SDK，初步的思路是从so文件入手，类似于移动端中所用到的技术，将关键逻辑放置于动态链接库中，防止被攻击者反编译。这篇文章记录了JNI的新手上路历程,展示了创建jni bridge的关键步骤。 创建Java类编写作为Native库的接口类 12345package me.chenxi65535.demo;public class HelloNative &amp;#12">
+<meta name="keywords" content="helloworld">
+<meta property="og:type" content="article">
+<meta property="og:title" content="New to JNI">
+<meta property="og:url" content="http://yoursite.com/2019/09/30/new-to-jni/index.html">
 <meta property="og:site_name" content="Notebook">
+<meta property="og:description" content="由于近期项目中需要编写一个认证来源的SDK，初步的思路是从so文件入手，类似于移动端中所用到的技术，将关键逻辑放置于动态链接库中，防止被攻击者反编译。这篇文章记录了JNI的新手上路历程,展示了创建jni bridge的关键步骤。 创建Java类编写作为Native库的接口类 12345package me.chenxi65535.demo;public class HelloNative &amp;#12">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-09-30T02:42:43.766Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Notebook">
-  <link rel="canonical" href="http://yoursite.com/">
+<meta name="twitter:title" content="New to JNI">
+<meta name="twitter:description" content="由于近期项目中需要编写一个认证来源的SDK，初步的思路是从so文件入手，类似于移动端中所用到的技术，将关键逻辑放置于动态链接库中，防止被攻击者反编译。这篇文章记录了JNI的新手上路历程,展示了创建jni bridge的关键步骤。 创建Java类编写作为Native库的接口类 12345package me.chenxi65535.demo;public class HelloNative &amp;#12">
+  <link rel="canonical" href="http://yoursite.com/2019/09/30/new-to-jni/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>Notebook</title>
+  <title>New to JNI | Notebook</title>
   
 
 
@@ -195,12 +200,13 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
+
   <div id="posts" class="posts-expand">
-        <article itemscope itemtype="http://schema.org/Article">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block home">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/30/new-to-jni/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -213,9 +219,8 @@
       <meta itemprop="name" content="Notebook">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/30/new-to-jni/" class="post-title-link" itemprop="url">New to JNI</a>
+        <h1 class="post-title" itemprop="name headline">New to JNI
+
           
         </h1>
 
@@ -269,7 +274,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>由于近期项目中需要编写一个认证来源的SDK，初步的思路是从so文件入手，类似于移动端中所用到的技术，将关键逻辑放置于动态链接库中，防止被攻击者反编译。这篇文章记录了JNI的新手上路历程,展示了创建jni bridge的关键步骤。</p>
+        <p>由于近期项目中需要编写一个认证来源的SDK，初步的思路是从so文件入手，类似于移动端中所用到的技术，将关键逻辑放置于动态链接库中，防止被攻击者反编译。这篇文章记录了JNI的新手上路历程,展示了创建jni bridge的关键步骤。</p>
 <h2 id="创建Java类"><a href="#创建Java类" class="headerlink" title="创建Java类"></a>创建Java类</h2><p>编写作为Native库的接口类</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> me.chenxi65535.demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloNative</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">native</span> <span class="keyword">void</span> <span class="title">greeting</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -303,108 +308,52 @@
 
 <p>运行该类，控制台输出<code>Hello Native World!</code>。<br><strong>注意</strong>：<br><code>System.load()</code>和<code>System.loadLibrary()</code>是两个不同的方法，<code>load()</code>需要提供绝对路径，<code>loadLibrary(&quot;HelloNative&quot;)</code>实际寻找的路径为<code>java.library.path</code>中名称为<code>libHelloNative.so</code>的文件。</p>
 
-        
-      
     </div>
 
     
     
     
-      <footer class="post-footer">
-          <div class="post-eof"></div>
         
-      </footer>
-  </div>
-  
-  
-  
-  </article>
+      
 
-    
-        <article itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block home">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/24/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="chenxi65535">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Notebook">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+      <footer class="post-footer">
+          
             
-            <a href="/2019/09/24/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
           
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-09-24 08:54:26" itemprop="dateCreated datePublished" datetime="2019-09-24T08:54:26+08:00">2019-09-24</time>
-            </span>
-          
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+          <div class="post-tags">
+            
+              <a href="/tags/helloworld/" rel="tag"># helloworld</a>
+            
+          </div>
+        
 
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/24/hello-world/" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
       </footer>
+    
   </div>
   
   
   
   </article>
 
-    
   </div>
-
-  
 
 
           </div>
@@ -423,6 +372,11 @@
 
   <aside class="sidebar">
     <div class="sidebar-inner">
+        
+        
+        
+        
+      
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
@@ -435,6 +389,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Java类"><span class="nav-number">1.</span> <span class="nav-text">创建Java类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成头文件"><span class="nav-number">2.</span> <span class="nav-text">生成头文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK7"><span class="nav-number">2.1.</span> <span class="nav-text">JDK7-</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK8"><span class="nav-number">2.2.</span> <span class="nav-text">JDK8+</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">2.3.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建Native实现"><span class="nav-number">3.</span> <span class="nav-text">创建Native实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行native方法"><span class="nav-number">4.</span> <span class="nav-text">运行native方法</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
