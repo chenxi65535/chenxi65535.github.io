@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.9.0">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="有时候，我们在离开了IDE的情况下，需要独立运行Java程序，这时候我们就需要对其打包，将其打包为可执行的Jar文件。打包就是将我们编译或的class文件、资源、依赖等文件压缩至一个文件内，但是如果要保证Jar包可执行，我们就需要遵守一些规范。对于可执行这种场景，如果我们的Jar包中包含了第三方的依">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="chenxi65535">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="package-executable-jar">
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="Notebook">
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article">
+    
+
+    <!--Page Cover-->
+    
+
+    <meta name="twitter:card" content="summary">
+    
+
+    <!-- Title -->
+    
+    <title>package-executable-jar - Notebook</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Google Analytics -->
+    
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-126580614-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+
+
+</head>
+
+
+<body>
+
+<div class="bg-gradient"></div>
+<div class="bg-pattern"></div>
+
+<!-- Menu -->
+<!--Menu Links and Overlay-->
+<div class="menu-bg">
+    <div class="menu-container">
+        <ul>
+            
+            <li class="menu-item">
+                <a href="/">
+                    Home
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/archives">
+                    Archives
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/tags">
+                    Tags
+                </a>
+            </li>
+            
+            <li class="menu-item">
+                <a href="/categories">
+                    Categories
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+<!--Hamburger Icon-->
+<nav>
+    <a href="#menu"></a>
+</nav>
+
+<div class="container">
+
+    <!-- Main Content -->
+    <div class="row">
+    <div class="col-sm-12">
+
+        <!--Title and Logo-->
+        <header>
+    <div class="logo">
+        <a href="/"><i class="logo-icon fa fa-book" aria-hidden="true"></i></a>
+        
+    </div>
+</header>
+
+        <section class="main">
+            
+<div class="post">
+
+    <div class="post-header">
+        <h1 class="title">
+            <a href="/2019/09/30/package-executable-jar/">
+                package-executable-jar
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-09-30</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Java/">Java</a>
+                </span>
+            
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Gallery -->
+        
+
+        <!-- Post Content -->
+        <p>有时候，我们在离开了IDE的情况下，需要独立运行Java程序，这时候我们就需要对其打包，将其打包为可执行的Jar文件。打包就是将我们编译或的class文件、资源、依赖等文件压缩至一个文件内，但是如果要保证Jar包可执行，我们就需要遵守一些规范。对于可执行这种场景，如果我们的Jar包中包含了第三方的依赖包，应该如何处理，我们针对两种情况进行说明：</p>
+<h2 id="传统Java项目"><a href="#传统Java项目" class="headerlink" title="传统Java项目"></a>传统Java项目</h2><p>打包步骤如下：</p>
+<ol>
+<li>编辑Project Structure的Artifacts设置，新增JAR类型的Artifacts</li>
+<li>添加compile output的元素到Jar包中</li>
+<li>添加Manifest文件，指定主类</li>
+<li>点击Build-&gt;Build Artifacts…</li>
+</ol>
+<p>至此，打包完毕<br>但是，依赖的问题没有得到解决，如果我们添加了依赖，在运行该jar包时，会抛出<code>NoClassDefFoundError</code>的异常。即使在Jar中添加了依赖包，在Manifest中配置了Class-path，问题依然没有得到解决。原因是Java不会从我们打包的Jar包中寻找依赖，而是基于Jar包本身的路径为基准寻找依赖。</p>
+<p>此时，最简单的解决办法是，在Manifest中填入<code>Class-Path: lib/commons-codec-1.3.jar</code><br>调整文件的目录结构如下:<br>packaging-demo.jar<br>lib/<br>    commons-codec-1.3.jar</p>
+<p>再次执行<code>java -jar packaging-demo.jar</code>，运行成功。</p>
+<p>但是，这个并不满足我们的目标，我们的需求是，创建<strong>一个</strong>可执行的Jar包，这个Jar包需要是以独立文件的形式存在的。</p>
+<p>在观察了maven-assembly-plugin的工作模式后，我们发现其工作的原理是将所依赖的Jar包的内容解压出来，打包进我们的可执行Jar包中。<br>由此我们也可以得知，在我们<code>import</code>依赖类的时候，java首先是在Jar包内的根目录直接搜索class文件，而非直接放置进去的jar文件。然后java会从classpath中进行寻找，如果无法找到依赖类的定义，就会抛出<code>NoClassDefFoundError</code>异常。</p>
+<h2 id="Maven项目"><a href="#Maven项目" class="headerlink" title="Maven项目"></a>Maven项目</h2><p>单纯的打包，我们添加配置即可</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果需要将依赖也打包到Jar中，可以使用maven-assembly-plugin插件。该插件的目的是，可以在Maven Lifecycle中的package phase中，添加除class文件外的其他信息。 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-assembly-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>single<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">archieve</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">                                <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                                    foo.bar.PackageTest</span><br><span class="line">                                <span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">archieve</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">descriptorRef</span>&gt;</span>jar-with-dependencies<span class="tag">&lt;/<span class="name">descriptorRef</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">descriptorRefs</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+
+    
+        <div class="post-tags">
+            <i class="fa fa-tags" aria-hidden="true"></i>
+            <a href="/tags/configuration/">#configuration</a>
+        </div>
+    
+
+    <!-- Comments -->
+    
+
+</div>
+        </section>
+
+    </div>
+</div>
+
+
+</div>
+
+<!-- Footer -->
+<div class="push"></div>
+
+<footer class="footer-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 footer-about">
+                <h2>About</h2>
+                <p>
+                    Just a coder. <a href="https://github.com/chenxi65535">Visit me on github</a>
+                </p>
+            </div>
+            
+    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 recent-posts">
+        <h2>Recent Posts</h2>
+        <ul>
+            
+            <li>
+                <a class="footer-post" href="/2019/09/30/maven-caution-summary/">maven-caution-summary</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/09/30/package-executable-jar/">package-executable-jar</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/09/30/maven-set-java-version/">maven-set-java-version</a>
+            </li>
+            
+            <li>
+                <a class="footer-post" href="/2019/09/30/new-to-jni/">New to JNI</a>
+            </li>
+            
+        </ul>
+    </div>
+
+
+
+            
+<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 footer-categories">
+    <h2>Categories</h2>
+    <ul>
+        
+        <li>
+            <a class="footer-post" href="/categories/Java/JNI/">JNI</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Java/Packaging/">Packaging</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Java/Maven/">Maven</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/Java/">Java</a>
+        </li>
+        
+    </ul>
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <ul class="list-inline footer-social-icons">
+                    
+                    <li class="list-inline-item">
+                        <a href="https://github.com/chenxi65535">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-github"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://twitter.com/?lang=en">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-twitter"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-facebook"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="https://www.instagram.com/">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-instagram"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    
+                    
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="mailto:chenxi65535@gmail.com">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-envelope-o"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="list-inline-item">
+                        <a href="\#">
+                            <span class="footer-icon-container">
+                                <i class="fa fa-rss"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="footer-copyright">
+                    @<a href="https://chenxi65535.github.io/">chenxi65535</a>. All right reserved | Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> | Theme by <a href="https://github.com/klugjo/hexo-theme-alpha-dust">klugjo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Tween Max -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.18.5/TweenMax.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Custom JavaScript -->
+<script src="/js/main.js"></script>
+
+<!-- Disqus Comments -->
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":200,"height":400},"mobile":{"show":true},"react":{"opacity":1}});</script></body>
+
+</html>
