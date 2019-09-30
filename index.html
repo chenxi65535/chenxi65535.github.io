@@ -146,6 +146,45 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2019/09/30/init-github-repository/">
+                init-github-repository
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-09-30</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/VCS/">VCS</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><h3 id="场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？"><a href="#场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？" class="headerlink" title="场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？"></a>场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"init: backup hexo blog configuration and source file"</span></span><br><span class="line">git remote add origin https://github.com/chenxi65535/hexo-blog.git</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>： 如果有需要，可以编写.gitignore文件，去除掉不想要版本控制的文件或目录，例如生成的中间文件、依赖等。</p>
+<h3 id="场景二：本地无文件夹，新建github项目，需要如何操作？"><a href="#场景二：本地无文件夹，新建github项目，需要如何操作？" class="headerlink" title="场景二：本地无文件夹，新建github项目，需要如何操作？"></a>场景二：本地无文件夹，新建github项目，需要如何操作？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/chenxi65535/hexo-blog.git</span><br></pre></td></tr></table></figure>
+
+<p>如果本地已经有GitHub的用户信息，直接就能够进行push和pull操作了。Windows一般将GitHub的凭据保存在凭据管理器中。</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="如何插件git保存的用户名和邮箱名"><a href="#如何插件git保存的用户名和邮箱名" class="headerlink" title="如何插件git保存的用户名和邮箱名"></a>如何插件git保存的用户名和邮箱名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2019/09/30/maven-caution-summary/">
                 maven-caution-summary
             </a>
@@ -344,6 +383,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2019/09/30/init-github-repository/">init-github-repository</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2019/09/30/maven-caution-summary/">maven-caution-summary</a>
             </li>
             
@@ -353,10 +396,6 @@
             
             <li>
                 <a class="footer-post" href="/2019/09/30/maven-set-java-version/">maven-set-java-version</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/09/30/new-to-jni/">New to JNI</a>
             </li>
             
         </ul>
@@ -370,19 +409,19 @@
     <ul>
         
         <li>
-            <a class="footer-post" href="/categories/Java/JNI/">JNI</a>
-        </li>
-        
-        <li>
             <a class="footer-post" href="/categories/Java/Packaging/">Packaging</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Java/Maven/">Maven</a>
+            <a class="footer-post" href="/categories/Java/JNI/">JNI</a>
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Java/">Java</a>
+            <a class="footer-post" href="/categories/VCS/">VCS</a>
+        </li>
+        
+        <li>
+            <a class="footer-post" href="/categories/VCS/git/">git</a>
         </li>
         
     </ul>
