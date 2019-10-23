@@ -146,6 +146,44 @@
 
     <div class="post-header index">
         <h1 class="title">
+            <a href="/2019/10/23/thinking-about-multiple-inheritance/">
+                thinking-about-multiple-inheritance
+            </a>
+        </h1>
+        <div class="post-info">
+            
+                <span class="date">2019-10-23</span>
+            
+            
+            
+                <span class="category">
+                    <a href="/categories/Java/">Java</a>
+                </span>
+            
+        </div>
+    </div>
+
+    
+        <div class="content">
+            <p>今天发现Java是支持对接口的多继承的，也就是说一个类可以拥有多个接口作为父类，但不可继承自多个非接口类。</p>
+<h3 id="多继承的场景"><a href="#多继承的场景" class="headerlink" title="多继承的场景"></a>多继承的场景</h3><p>例如猫继承自哺乳动物，但又需继承卡通角色和宠物。</p>
+<h3 id="为什么不能多继承呢"><a href="#为什么不能多继承呢" class="headerlink" title="为什么不能多继承呢"></a>为什么不能多继承呢</h3><p>多继承会导致钻石问题或菱形缺陷。菱形缺陷包括两个问题：</p>
+<ol>
+<li>子对象重叠</li>
+<li>向上映射的二义性</li>
+</ol>
+<h3 id="钻石问题"><a href="#钻石问题" class="headerlink" title="钻石问题"></a>钻石问题</h3><h3 id="如何解决多继承的问题"><a href="#如何解决多继承的问题" class="headerlink" title="如何解决多继承的问题"></a>如何解决多继承的问题</h3><p>Java允许对象从多个接口继承，但仅允许一个实现继承。即实现了多个接口出现混淆也没关系，因为实现只有一份。</p>
+
+        </div>
+    
+
+</div>
+            
+                
+<div class="post">
+
+    <div class="post-header index">
+        <h1 class="title">
             <a href="/2019/10/23/markdown-cheatsheet/">
                 markdown-cheatsheet
             </a>
@@ -414,6 +452,10 @@
         <ul>
             
             <li>
+                <a class="footer-post" href="/2019/10/23/thinking-about-multiple-inheritance/">thinking-about-multiple-i</a>
+            </li>
+            
+            <li>
                 <a class="footer-post" href="/2019/10/23/markdown-cheatsheet/">markdown-cheatsheet</a>
             </li>
             
@@ -423,10 +465,6 @@
             
             <li>
                 <a class="footer-post" href="/2019/09/30/maven-caution-summary/">maven-caution-summary</a>
-            </li>
-            
-            <li>
-                <a class="footer-post" href="/2019/09/30/package-executable-jar/">package-executable-jar</a>
             </li>
             
         </ul>
@@ -444,7 +482,7 @@
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/VCS/git/">git</a>
+            <a class="footer-post" href="/categories/Java/JNI/">JNI</a>
         </li>
         
         <li>
@@ -452,7 +490,7 @@
         </li>
         
         <li>
-            <a class="footer-post" href="/categories/Java/Packaging/">Packaging</a>
+            <a class="footer-post" href="/categories/VCS/git/">git</a>
         </li>
         
     </ul>

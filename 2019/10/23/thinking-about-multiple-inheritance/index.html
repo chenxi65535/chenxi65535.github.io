@@ -10,7 +10,14 @@
 
     <!--Description-->
     
-        <meta name="description" content="场景场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？123456cd bloggit initgit add .git commit -m &#34;init: backup hexo blog configuration and source file&#34;git remote add o">
+        <meta name="description" content="今天发现Java是支持对接口的多继承的，也就是说一个类可以拥有多个接口作为父类，但不可继承自多个非接口类。
+多继承的场景例如猫继承自哺乳动物，但又需继承卡通角色和宠物。
+为什么不能多继承呢多继承会导致钻石问题或菱形缺陷。菱形缺陷包括两个问题：
+
+子对象重叠
+向上映射的二义性
+
+钻石问题如何解决多继承">
     
 
     <!--Author-->
@@ -20,7 +27,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="init-github-repository">
+        <meta property="og:title" content="thinking-about-multiple-inheritance">
     
 
     <!--Open Graph Description-->
@@ -42,7 +49,7 @@
 
     <!-- Title -->
     
-    <title>init-github-repository - Notebook</title>
+    <title>thinking-about-multiple-inheritance - Notebook</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -145,18 +152,18 @@
 
     <div class="post-header">
         <h1 class="title">
-            <a href="/2019/09/30/init-github-repository/">
-                init-github-repository
+            <a href="/2019/10/23/thinking-about-multiple-inheritance/">
+                thinking-about-multiple-inheritance
             </a>
         </h1>
         <div class="post-info">
             
-                <span class="date">2019-09-30</span>
+                <span class="date">2019-10-23</span>
             
             
             
                 <span class="category">
-                    <a href="/categories/VCS/">VCS</a>
+                    <a href="/categories/Java/">Java</a>
                 </span>
             
         </div>
@@ -168,16 +175,15 @@
         
 
         <!-- Post Content -->
-        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><h3 id="场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？"><a href="#场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？" class="headerlink" title="场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？"></a>场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"init: backup hexo blog configuration and source file"</span></span><br><span class="line">git remote add origin https://github.com/chenxi65535/hexo-blog.git</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+        <p>今天发现Java是支持对接口的多继承的，也就是说一个类可以拥有多个接口作为父类，但不可继承自多个非接口类。</p>
+<h3 id="多继承的场景"><a href="#多继承的场景" class="headerlink" title="多继承的场景"></a>多继承的场景</h3><p>例如猫继承自哺乳动物，但又需继承卡通角色和宠物。</p>
+<h3 id="为什么不能多继承呢"><a href="#为什么不能多继承呢" class="headerlink" title="为什么不能多继承呢"></a>为什么不能多继承呢</h3><p>多继承会导致钻石问题或菱形缺陷。菱形缺陷包括两个问题：</p>
+<ol>
+<li>子对象重叠</li>
+<li>向上映射的二义性</li>
+</ol>
+<h3 id="钻石问题"><a href="#钻石问题" class="headerlink" title="钻石问题"></a>钻石问题</h3><h3 id="如何解决多继承的问题"><a href="#如何解决多继承的问题" class="headerlink" title="如何解决多继承的问题"></a>如何解决多继承的问题</h3><p>Java允许对象从多个接口继承，但仅允许一个实现继承。即实现了多个接口出现混淆也没关系，因为实现只有一份。</p>
 
-<p><strong>注意</strong>： 如果有需要，可以编写.gitignore文件，去除掉不想要版本控制的文件或目录，例如生成的中间文件、依赖等。</p>
-<h3 id="场景二：本地无文件夹，新建github项目，需要如何操作？"><a href="#场景二：本地无文件夹，新建github项目，需要如何操作？" class="headerlink" title="场景二：本地无文件夹，新建github项目，需要如何操作？"></a>场景二：本地无文件夹，新建github项目，需要如何操作？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/chenxi65535/hexo-blog.git</span><br></pre></td></tr></table></figure>
-
-<p>如果本地已经有GitHub的用户信息，直接就能够进行push和pull操作了。Windows一般将GitHub的凭据保存在凭据管理器中。</p>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="如何插件git保存的用户名和邮箱名"><a href="#如何插件git保存的用户名和邮箱名" class="headerlink" title="如何插件git保存的用户名和邮箱名"></a>如何插件git保存的用户名和邮箱名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -185,7 +191,7 @@
     
         <div class="post-tags">
             <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/procedure/">#procedure</a> <a href="/tags/helloworld/">#helloworld</a>
+            <a href="/tags/OOP/">#OOP</a> <a href="/tags/Inheritance/">#Inheritance</a> <a href="/tags/Programming/">#Programming</a>
         </div>
     
 

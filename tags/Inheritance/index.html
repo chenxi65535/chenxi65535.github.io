@@ -10,8 +10,6 @@
 
     <!--Description-->
     
-        <meta name="description" content="场景场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？123456cd bloggit initgit add .git commit -m &#34;init: backup hexo blog configuration and source file&#34;git remote add o">
-    
 
     <!--Author-->
     
@@ -20,7 +18,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="init-github-repository">
+        <meta property="og:title" content="Notebook">
     
 
     <!--Open Graph Description-->
@@ -31,7 +29,7 @@
 
     <!--Type page-->
     
-        <meta property="og:type" content="article">
+        <meta property="og:type" content="website">
     
 
     <!--Page Cover-->
@@ -42,7 +40,7 @@
 
     <!-- Title -->
     
-    <title>init-github-repository - Notebook</title>
+    <title>Inheritance - Notebook</title>
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
@@ -128,7 +126,9 @@
 <div class="container">
 
     <!-- Main Content -->
-    <div class="row">
+    
+
+<div class="row">
     <div class="col-sm-12">
 
         <!--Title and Logo-->
@@ -136,68 +136,25 @@
     <div class="logo">
         <a href="/"><i class="logo-icon fa fa-book" aria-hidden="true"></i></a>
         
+            <h1 id="main-title" class="title">#Inheritance</h1>
+        
     </div>
 </header>
 
-        <section class="main">
+        <section class="main archive-container">
             
-<div class="post">
-
-    <div class="post-header">
-        <h1 class="title">
-            <a href="/2019/09/30/init-github-repository/">
-                init-github-repository
-            </a>
-        </h1>
-        <div class="post-info">
-            
-                <span class="date">2019-09-30</span>
-            
-            
-            
-                <span class="category">
-                    <a href="/categories/VCS/">VCS</a>
-                </span>
-            
-        </div>
-    </div>
-
-    <div class="content">
-
-        <!-- Gallery -->
-        
-
-        <!-- Post Content -->
-        <h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><h3 id="场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？"><a href="#场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？" class="headerlink" title="场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？"></a>场景一：本地已经有了一个文件夹，将要将其接入版本控制，需要如何操作？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"init: backup hexo blog configuration and source file"</span></span><br><span class="line">git remote add origin https://github.com/chenxi65535/hexo-blog.git</span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
-
-<p><strong>注意</strong>： 如果有需要，可以编写.gitignore文件，去除掉不想要版本控制的文件或目录，例如生成的中间文件、依赖等。</p>
-<h3 id="场景二：本地无文件夹，新建github项目，需要如何操作？"><a href="#场景二：本地无文件夹，新建github项目，需要如何操作？" class="headerlink" title="场景二：本地无文件夹，新建github项目，需要如何操作？"></a>场景二：本地无文件夹，新建github项目，需要如何操作？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/chenxi65535/hexo-blog.git</span><br></pre></td></tr></table></figure>
-
-<p>如果本地已经有GitHub的用户信息，直接就能够进行push和pull操作了。Windows一般将GitHub的凭据保存在凭据管理器中。</p>
-<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><h3 id="如何插件git保存的用户名和邮箱名"><a href="#如何插件git保存的用户名和邮箱名" class="headerlink" title="如何插件git保存的用户名和邮箱名"></a>如何插件git保存的用户名和邮箱名</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
-    </div>
-
-    
-
-    
-        <div class="post-tags">
-            <i class="fa fa-tags" aria-hidden="true"></i>
-            <a href="/tags/procedure/">#procedure</a> <a href="/tags/helloworld/">#helloworld</a>
-        </div>
-    
-
-    <!-- Comments -->
-    
-
+                <div class="archive-post">
+    <a href="/2019/10/23/thinking-about-multiple-inheritance/">
+        <span class="archive-date">
+            Oct 2019
+        </span>
+        thinking-about-multiple-inheritance
+    </a>
 </div>
+            
         </section>
-
     </div>
 </div>
-
 
 </div>
 
